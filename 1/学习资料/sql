@@ -1,0 +1,84 @@
+DROP TABLE IF EXISTS t_employee;
+CREATE TABLE t_employee (
+id int(12) not null auto_increment,
+real_name varchar(60) not null,
+sex int(2) not null comment '1 - 男 0- 女',
+birthday date not null,
+mobile varchar(20)  not null,
+email varchar(60) not null,
+position varchar(20) not null,
+note varchar(256) not null,
+primary key (id) 
+) ENGINE=InnoDB AUTO_INCREMENT=146 DEFAULT CHARSET=utf8;
+
+
+DROP TABLE IF EXISTS t_employee_task;
+CREATE TABLE t_employee_task(
+id int(12) not null,
+emp_id int(12) not null,
+task_id int(12) not null,
+task_name varchar(60) not null,
+note varchar(256),
+primary key (id) 
+) ENGINE=InnoDB AUTO_INCREMENT=146 DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS t_female_health_form;
+CREATE TABLE t_female_health_form(
+id int(12) not null auto_increment,
+heart varchar(60) not null,
+liver varchar(60) not null,
+spleen varchar(60) not null,
+lung varchar(60) not null,
+kidney varchar(60) not null,
+uterus varchar(60) not null,
+note varchar(256),
+primary key (id) 
+) ENGINE=InnoDB AUTO_INCREMENT=146 DEFAULT CHARSET=utf8;
+
+CREATE TABLE t_female_health_form(
+id int(12) not null auto_increment,
+heart varchar(60) not null,
+liver varchar(60) not null,
+spleen varchar(60) not null,
+lung varchar(60) not null,
+kidney varchar(60) not null,
+uterus varchar(60) not null,
+note varchar(256),
+DROP TABLE IF EXISTS t_male_health_form;
+
+alter table t_female_health_form add emp_id varchar(12) after id;
+alter table t_female_health_form modify emp_id int(12) not null;
+
+
+CREATE TABLE t_male_health_form(
+id int(12) not null auto_increment,
+heart varchar(60) not null,
+liver varchar(60) not null,
+spleen varchar(60) not null,
+lung varchar(60) not null,
+kidney varchar(60) not null,
+prostate varchar(60) not null,
+note varchar(256),
+primary key (id) 
+) ENGINE=InnoDB AUTO_INCREMENT=146 DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS t_task;
+CREATE TABLE t_task(
+id int(12) not null,
+title varchar(60) not null,
+context varchar(256) not null,
+note varchar(256),
+primary key (id) 
+) ENGINE=InnoDB AUTO_INCREMENT=146 DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS t_work_card;
+CREATE TABLE t_work_card(
+id int(12) not null auto_increment, 
+emp_id int(12) not null,
+real_name varchar(60) not null,
+department varchar(20) not null,
+mobile varchar(20) not null,
+position varchar(30) not null,
+note varchar(256),
+primary key (id) 
+) ENGINE=InnoDB AUTO_INCREMENT=146 DEFAULT CHARSET=utf8;

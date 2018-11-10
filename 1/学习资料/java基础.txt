@@ -1,0 +1,99 @@
+数据排序
+Arrays.sort(a);
+对象与类
+1、对象包装器和自动装箱
+Integer基本类型是int，成为包装器
+对象包装器是不可变的，final
+ArrayList<Integer> list = new ArrayList<>;
+类型参数是Integer类型，不能是int类型
+list.add(3)自动变成listlist.add(Integer.valueof(3))这是属于自动装箱
+int n = list.get(i)自动转变成int n = list.get(i).inValue(),这是属于自动拆箱
+Integer a = 1000, Integer b = 1000,比较两个包装器对象最好用equals方法
+包装类引用为null的时候，自动装箱会抛出以个NoPointExcption:Integer n = null ,System.out.print(n*2);
+表达式中混合使用Integer和Double，Integer 会自动拆箱，然后转化为double，然后自动装箱为Double
+例：Integer a= 1，Double  b= 2.0；system.out.print(true ? a:b);1.0
+把某些方法放在包装器中，将一个数字字符转化为数字
+int n = Integet.parseInt(s);
+Integer对象是不可变的：包含在包装器中的内容也是不可变的，不能用包装器类创建修改数值的方法
+public static void triple (Integer x){
+	x = x*3; 不可用
+}
+2、枚举类
+比较两个枚举类的值不用equals，而是用==
+public Enum Size{
+	SIZE("s"),MEDIUM("m"),LARCE("l")
+	private String age;
+	构造器
+	public Size(String age){
+		this.age = age;
+	}
+	get方法
+	public String getAge(){
+		retrun age;
+	}
+}
+所以的枚举的都是Enum的子类，继承了toString()方法，这个方法返回了枚举的常量名
+String toString() 返回枚举的常量名，
+例：Size.SIZE.toString(); 返回的字符串为SIZE
+toString 有一个逆向的静态方法 valueOf（）
+static Enum valueOf(Class enumClass,String name)，返回指定的名字、给定类的枚举常量
+Size s = Enum.valueOf(Size.class,"SIZE);
+把s设置为了Size.SIZE
+ordinal()方法是返回枚举中常量的位置
+例：Size.MEDIM.ordinal();返回的是1
+
+3、反射
+3.1 Class 类
+Object 中的getClass()方法返回的是Class类型的实例
+如果类中包里，包名也是类名的一部分
+forName获取类名对应的Class 对象
+Randan r = new Random();
+Class c =r.getClass();
+String cName = c.getName();
+ 返回的是"java.util.Random"
+String sName = "java.util.Random";
+Class s= Class.forName(sName);返回的是Class对象
+任意T是Java类型，那么T.class是代表匹配类的对象
+例如： Class cl = int.class 是Class类型的对象
+虚拟机为每一个类型管理一个Class对象，可以用“===”运算符实现两个对象的操作
+if(e.getClass()==Employee.class)
+可以用newInstance();动态创建一个类的动态实例
+e.getClass().newInstance();相当于默认调用它的无參构造方法，如果没有默认的构造器，则抛出有异常
+forName()和newInstance()配合使用
+String s = "java.util.Random";
+Object r = Class.forName(s).newIstance();
+3.2捕获Class.forName(String name)异常
+Throwable 中的printStackTrace打印栈的轨迹，Throwable 类是Exception 类的超类
+Static Class.forName(String name) 返回Class类对象
+Object newInstance(),返回的是这个类的实例，也叫类的对象
+Object newInstance(Object[] args);提供构造器的参数
+3.3反射分析类
+Field[] fields = c.getFields()
+Field[] fields = c.getDeclaredFields()
+getFields()返回包含Field对象的数组，记录这个类以及超类的公有域
+getDeclaredFields()返回包含Field对象的数组，记录这个类的全部域，如果类中没有域，或者Class类对象描述
+的是基本类型和数组类型，这写方法返回一个为0的数组
+Method []methods = c.getMethods();
+Method []methods = c.getDeclaredMethods();
+getMethods()返回这个类以及超类的公有方法
+getDeclaredMethods()返回这个类所有的方法，不包含超类的继承的类
+Construtor[] constructors = c.getConstructor();
+Construtor[] constructors = c.getDeclaredConstructor();
+返回所有构造器
+
+Class   getDeclaringClass()返回描述类中定义的构造器，方法，域的Class对象
+Class[]		getExceptionType()返回描述方法抛出的异常类型的Class对象的数组
+int		getModifiers();返回描述构造器，方法，域的修饰符的整形数值（Constructor 和Method类中）
+String getName()；返回描述构造器、方法、域的字符串
+Class[]  getParameterTpey();返回描述参数类型的Class对象数组
+Class   getReturnTpye();
+void setAccessible(boolean flag) 为反射对象设置可以访问的标识
+
+4.接口
+5.lambda表达式
+
+                                                           
+ 
+
+
+
